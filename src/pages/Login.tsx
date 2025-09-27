@@ -1,11 +1,13 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { API_BASE_URL } from "../const/env";
+import { UseAuth } from "../hooks/auth";
 
 export default function LoginPage() {
+  const { setAccessToken } = UseAuth();
   const postToGetAccessToken = async (authCode: string) => {
     const apiBaseURL = API_BASE_URL;
-    const response = await fetch(`${apiBaseURL}/auth/accessToken`, {
+    const response = await fetch(`${apiBaseURL}/public/auth/accessToken`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,6 +28,8 @@ export default function LoginPage() {
     onSuccess: async ({ code }) => {
       // Exchange the code on your backend for tokens
       const resp = await postToGetAccessToken(code);
+      const token = resp["access_token"];
+      setAccessToken(token);
       console.log(resp);
     },
     onError: () => console.log("Login Failed"),
