@@ -1,5 +1,9 @@
+"use client";
 import { Menu, Home, Search, PlusSquare, Heart } from "lucide-react";
 import { mockProfile } from "../data/user";
+import { useEffect, useState } from "react";
+import type { Profile } from "../types/user";
+import { useUser } from "../hooks/user";
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
@@ -11,7 +15,18 @@ function Stat({ value, label }: { value: string; label: string }) {
 }
 
 export default function ProfilePage() {
-  const profile = mockProfile;
+  const [profile, setProfile] = useState<Profile>(mockProfile);
+  const { getProfile } = useUser();
+
+  useEffect(() => {
+    async function fetchProfile() {
+      const profileData = await getProfile();
+      console.log("profileData", profileData);
+      setProfile(profileData);
+    }
+    fetchProfile();
+  }, []);
+
   return (
     <div className="min-h-screen w-full flex flex-col justify-between bg-white">
       <div className="mx-auto h-full bg-white shadow-sm overflow-hidden">
