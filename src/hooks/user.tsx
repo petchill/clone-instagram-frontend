@@ -22,5 +22,3 @@ export function useUser() {
 
   return { getProfile };
 }
-// https://clone-instagram-service.s3.us-east-2.amazonaws.com/media/2/2c0b60a1-6497-41d8-85b3-cb3a86dcc458.jpg
-// https://clone-instagram-service.s3.us-east-2.amazonaws.com/media/2/2c0b60a1-6497-41d8-85b3-cb3a86dcc458.jpg
