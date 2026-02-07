@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { UseAuth } from "../hooks/auth";
 
 export default function HomePage() {
+  const { getAccessToken } = UseAuth();
   const sendMessage = (payload: any) => {
     const ws = wsRef.current;
     if (ws && ws.readyState === WebSocket.OPEN) {
@@ -16,12 +18,17 @@ export default function HomePage() {
   const heartbeatRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const url = "ws://localhost:5000/ws"; // change to your websocket URL
+    const baseUrl = "ws://localhost:5000/ws"; // change to your websocket URL
     let shouldReconnect = true;
     let reconnectDelay = 1000;
 
     function connect() {
       setWsStatus("connecting");
+
+      const token = getAccessToken();
+      const url = new URL(baseUrl);
+      url.searchParams.append("accessToken", token);
+      console.log("url => ", url);
       const ws = new WebSocket(url);
       wsRef.current = ws;
 
@@ -31,11 +38,11 @@ export default function HomePage() {
         // ws.send("hello server");
         // start heartbeat
         if (heartbeatRef.current == null) {
-          heartbeatRef.current = window.setInterval(() => {
-            if (ws.readyState === WebSocket.OPEN) {
-              ws.send(JSON.stringify({ type: "ping" }));
-            }
-          }, 30000);
+          // heartbeatRef.current = window.setInterval(() => {
+          //   if (ws.readyState === WebSocket.OPEN) {
+          //     ws.send(JSON.stringify({ type: "ping" }));
+          //   }
+          // }, 30000);
         }
       };
 

@@ -1,9 +1,10 @@
 "use client";
-import { Menu, Home, Search, PlusSquare, Heart } from "lucide-react";
+import { Menu } from "lucide-react";
 import { mockProfile } from "../data/user";
 import { useEffect, useState } from "react";
 import type { Profile } from "../types/user";
 import { useUser } from "../hooks/user";
+import PrivateLayout from "../layout/private";
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
@@ -20,15 +21,20 @@ export default function ProfilePage() {
 
   useEffect(() => {
     async function fetchProfile() {
-      const profileData = await getProfile();
-      console.log("profileData", profileData);
-      setProfile(profileData);
+      try {
+        const profileData = await getProfile();
+        console.log("profileData", profileData);
+        setProfile(profileData);
+      } catch (error) {
+        console.error("fetchProfile error:", error);
+      }
     }
+
     fetchProfile();
   }, []);
 
   return (
-    <div className="min-h-screen w-full flex flex-col justify-between bg-white">
+    <PrivateLayout>
       <div className="mx-auto h-full bg-white shadow-sm overflow-hidden">
         {/* Top area */}
         <div className="flex items-center justify-between px-4 pt-3 pb-2">
@@ -131,21 +137,6 @@ export default function ProfilePage() {
 
         {/* Bottom nav */}
       </div>
-      <div className="sticky bottom-0">
-        <div className="flex items-center justify-between px-8 py-3 bg-white">
-          <Home className="w-7 h-7" />
-          <Search className="w-7 h-7" />
-          <PlusSquare className="w-7 h-7" />
-          <Heart className="w-7 h-7" />
-          <div className="w-7 h-7 rounded-full overflow-hidden ring-2 ring-gray-200">
-            <img
-              src={profile.user.picture}
-              alt="me"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    </PrivateLayout>
   );
 }
