@@ -4,6 +4,7 @@ import HomePage from "./pages/Home";
 import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/Profile";
 import NotificationPage from "./pages/Notification";
+import NewsFeedPage from "./pages/NewsFeed";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/notification" element={<NotificationPage />} />
+          <Route path="/news-feed" element={<NewsFeedPage />} />
         </Routes>
       </div>
     </div>
