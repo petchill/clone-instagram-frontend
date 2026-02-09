@@ -31,28 +31,50 @@ export default function PrivateLayout({ children }: { children: ReactNode }) {
       {children}
       <div className="sticky bottom-0">
         <div className="flex items-center justify-between px-8 py-3 bg-white">
-          <button type="button" aria-label="Home" className={navButtonClass}>
-            <Home className="w-7 h-7" />
-          </button>
-          <button type="button" aria-label="Search" className={navButtonClass}>
-            <Search className="w-7 h-7" />
-          </button>
-          <button type="button" aria-label="Create" className={navButtonClass}>
-            <PlusSquare className="w-7 h-7" />
-          </button>
-          <button
-            type="button"
-            aria-label="Notifications"
-            className={`${navButtonClass} relative`}
-          >
-            <Heart className="w-7 h-7" />
-            {hasNoti() && (
-              <span className="absolute right-[-1px] bottom-[-1px] h-2 w-2 rounded-full bg-red-500" />
-            )}
-          </button>
-          <button type="button" aria-label="Profile" className={navButtonClass}>
-            <User className="w-7 h-7" />
-          </button>
+          <a href="/">
+            <button type="button" aria-label="Home" className={navButtonClass}>
+              <Home className="w-7 h-7" />
+            </button>
+          </a>
+          <a href="/">
+            <button
+              type="button"
+              aria-label="Search"
+              className={navButtonClass}
+            >
+              <Search className="w-7 h-7" />
+            </button>
+          </a>
+          <a href="/">
+            <button
+              type="button"
+              aria-label="Create"
+              className={navButtonClass}
+            >
+              <PlusSquare className="w-7 h-7" />
+            </button>
+          </a>
+          <a href="/notification">
+            <button
+              type="button"
+              aria-label="Notifications"
+              className={`${navButtonClass} relative`}
+            >
+              <Heart className="w-7 h-7" />
+              {hasNoti() && (
+                <span className="absolute right-[-1px] bottom-[-1px] h-2 w-2 rounded-full bg-red-500" />
+              )}
+            </button>
+          </a>
+          <a href="/profile">
+            <button
+              type="button"
+              aria-label="Profile"
+              className={navButtonClass}
+            >
+              <User className="w-7 h-7" />
+            </button>
+          </a>
         </div>
       </div>
     </div>

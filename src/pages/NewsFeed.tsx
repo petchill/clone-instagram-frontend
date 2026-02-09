@@ -1,16 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import PrivateLayout from "../layout/private";
-import { mockProfile } from "../data/user";
-// import { useUser } from "../hooks/user";
-// import type { Profile } from "../types/user";
 import FeedBox from "../components/news_feed/FeedBox";
 import { useNewsFeed } from "../hooks/newsFeed";
-import type { MediaMetaData } from "../types/post";
+import type { NewsFeed } from "../types/newsfeed";
 
 export default function NewsFeedPage() {
-  // const [profile, setProfile] = useState<Profile>(mockProfile);
-  const [newsFeed, setNewsFeed] = useState<MediaMetaData[]>(mockProfile.posts);
+  const [newsFeed, setNewsFeed] = useState<NewsFeed[]>([]);
   const { getNewsFeed } = useNewsFeed();
 
   useEffect(() => {
@@ -35,13 +31,8 @@ export default function NewsFeedPage() {
         </div>
 
         <div>
-          {newsFeed.map((post) => (
-            <FeedBox
-              key={post.id}
-              // username={profile.user.given_name}
-              // avatar={profile.user.picture}
-              post={post}
-            />
+          {newsFeed.map((news) => (
+            <FeedBox key={`feed-${news.media.id}`} post={news} />
           ))}
         </div>
       </div>

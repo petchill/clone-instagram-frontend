@@ -1,11 +1,11 @@
 import { API_BASE_URL } from "../const/env";
-import type { MediaMetaData } from "../types/post";
+import type { NewsFeed } from "../types/newsfeed";
 import { UseAuth } from "./auth";
 
 export function useNewsFeed() {
   const { getAccessToken } = UseAuth();
 
-  async function getNewsFeed(): Promise<MediaMetaData[]> {
+  async function getNewsFeed(): Promise<NewsFeed[]> {
     try {
       const token = getAccessToken();
       const apiBaseURL = API_BASE_URL;
@@ -25,7 +25,7 @@ export function useNewsFeed() {
         throw new Error(`Failed to fetch news feed: ${response.status}`);
       }
 
-      const resJSON: MediaMetaData[] = await response.json();
+      const resJSON: NewsFeed[] = await response.json();
       return resJSON;
     } catch (error) {
       console.error("getNewsFeed error:", error);

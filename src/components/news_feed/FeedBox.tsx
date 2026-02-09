@@ -1,34 +1,27 @@
 // import { Heart, MessageCircle, Send } from "lucide-react";
-import type { MediaMetaData } from "../../types/post";
+import type { NewsFeed } from "../../types/newsfeed";
 
 type FeedBoxProps = {
-  // username: string;
-  // avatar: string;
-  post: MediaMetaData;
+  post: NewsFeed;
 };
 
-export default function FeedBox({
-  // username,
-  // avatar,
-  post,
-}: FeedBoxProps) {
+export default function FeedBox({ post }: FeedBoxProps) {
   return (
     <article className="border-b border-gray-100">
       <div className="flex items-center gap-3 px-4 py-3">
         <img
-          src={"/"}
+          src={post.user.picture || "/"}
           alt={"profile image"}
           className="h-8 w-8 rounded-full object-cover"
         />
-        {/* <span className="text-sm font-semibold text-gray-900">{username}</span> */}
         <span className="text-sm font-semibold text-gray-900">
-          {post.owner_user_id}
+          {post.user.name}
         </span>
       </div>
 
       <img
-        src={post.file_storage_link}
-        alt={`post-${post.id}`}
+        src={post.media.file_storage_link}
+        alt={`post-${post.media.id}`}
         className="h-auto w-full object-cover"
       />
 
@@ -46,10 +39,8 @@ export default function FeedBox({
         </div> */}
 
         <p className="text-sm text-gray-900">
-          <span className="font-bold mr-[8px]">{post.owner_user_id}</span>
-
-          {/* <span className="mr-2 font-semibold">{username}</span> */}
-          {post.caption}
+          <span className="mr-2 font-semibold mr-[8px]">{post.user.name}</span>
+          {post.media.caption}
         </p>
       </div>
     </article>
