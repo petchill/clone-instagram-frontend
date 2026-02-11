@@ -66,7 +66,7 @@ export default function PrivateLayout({ children }: { children: ReactNode }) {
               <Search className="w-7 h-7" />
             </button>
           </a>
-          <a href="/">
+          <a href="/upload">
             <button
               type="button"
               aria-label="Create"

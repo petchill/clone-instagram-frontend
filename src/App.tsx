@@ -7,6 +7,7 @@ import NotificationPage from "./pages/Notification";
 import NewsFeedPage from "./pages/NewsFeed";
 import HomePage from "./pages/Home";
 import { RootStoreProvider } from "./store/Root";
+import UploadPage from "./pages/Upload";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/notification" element={<NotificationPage />} />
             <Route path="/news-feed" element={<NewsFeedPage />} />
             <Route path="/home" element={<HomePage />} />
+            <Route path="/upload" element={<UploadPage />} />
           </Routes>
         </div>
       </div>
