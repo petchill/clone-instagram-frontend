@@ -29,8 +29,8 @@ export default function LoginPage() {
       // Exchange the code on your backend for tokens
       const resp = await postToGetAccessToken(code);
       const token = resp["access_token"];
-      setAccessToken(token);
-      console.log(resp);
+      await setAccessToken(token);
+      window.location.href = "/";
     },
     onError: () => console.log("Login Failed"),
   });
