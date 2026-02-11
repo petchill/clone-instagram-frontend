@@ -57,6 +57,7 @@ export default function ProfilePage() {
                     src={profile.user.picture}
                     alt="avatar"
                     className="w-full h-full rounded-full object-cover"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
               </div>

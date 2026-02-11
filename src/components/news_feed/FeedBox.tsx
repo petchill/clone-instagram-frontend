@@ -13,6 +13,7 @@ export default function FeedBox({ post }: FeedBoxProps) {
           src={post.user.picture || "/"}
           alt={"profile image"}
           className="h-8 w-8 rounded-full object-cover"
+          referrerPolicy="no-referrer"
         />
         <span className="text-sm font-semibold text-gray-900">
           {post.user.name}
